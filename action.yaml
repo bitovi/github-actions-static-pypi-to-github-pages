@@ -1,0 +1,38 @@
+
+# TODO: ensure this is in the readme
+# permissions:
+#   pages: write      # to deploy to Pages
+#   id-token: write   # to verify the deployment originates from an appropriate source
+
+
+
+name: GH-PyPI-Publish
+description: 'Publishes a Python package to github-hosted PyPI'
+
+inputs:
+  checkout:
+    description: 'Checkout the repo'
+    required: false
+    default: 'true'
+
+  pypi-path:
+    description: 'Path to the PyPI package'
+    required: false
+    default: 'pypi/'
+runs:
+  using: "composite"
+  steps:
+    # checkout the repo
+    - id: checkout
+      if: ${{ inputs.checkout == 'true' }}
+      name: checkout
+      uses: actions/checkout@v4
+
+    - name: upload pages artifact
+      uses: actions/upload-pages-artifact@v3
+      with: 
+        path: ${{ inputs.pypi-path }}
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
