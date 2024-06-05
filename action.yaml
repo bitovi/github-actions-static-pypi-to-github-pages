@@ -6,8 +6,8 @@
 
 
 
-name: GH-PyPI-Publish
-description: 'Publishes a Python package to github-hosted PyPI'
+name: Deploy PyPI to GitHub Pages
+description: 'Publishes a static PyPI repository to GitHub Pages'
 
 inputs:
   checkout:
