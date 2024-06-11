@@ -19,6 +19,14 @@ inputs:
     description: 'Path to the PyPI package'
     required: false
     default: 'pypi/'
+
+
+outputs:
+  page_url:
+    description: "The URL of the page"
+    value: ${{ steps.deployment.outputs.page_url }}
+
+
 runs:
   using: "composite"
   steps:
